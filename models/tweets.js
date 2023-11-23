@@ -8,9 +8,6 @@ const tweetSchema = mongoose.Schema({
   tweet: String,
   // hashtags: [{ type: mongoose.Schema.types.ObjectId, ref: "hashtags" }],
   hashtags: [String],
-
-  //hashtags: [{ type: mongoose.Schema.Types.ObjectId, ref: "hashtags" }],
-  hashtags: [String],
   date: Date,
 });
 

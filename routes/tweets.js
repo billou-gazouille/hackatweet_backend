@@ -14,7 +14,8 @@ router.post('/newTweet', async(req, res) => {
     await new Tweet({
         user: '655f26b61eaa972ef516bf61',   
         tweet: tweetBody,
-        hashtags 
+        hashtags,
+        date: new Date()
     }).save();
     const tweets = await Tweet.find();
     res.json({ result: true, tweets });
