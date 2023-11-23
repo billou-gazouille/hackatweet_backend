@@ -12,11 +12,12 @@ router.post('/newTweet', async(req, res) => {
     const hashtags = tweetBody.split(' ').filter(word => word[0] === '#');
     console.log(hashtags);
     await new Tweet({
-        user: '655f26b61eaa972ef516bf61',
+        user: '655f26b61eaa972ef516bf61',   
         tweet: tweetBody,
         hashtags 
     }).save();
-    res.json({ ok: 'ok' });
+    const tweets = await Tweet.find();
+    res.json({ result: true, tweets });
 });
 
 module.exports = router;
