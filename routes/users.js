@@ -1,7 +1,7 @@
 var express = require("express");
 var router = express.Router();
 
-require("../models/connection");
+
 const User = require("../models/users");
 const { checkBody } = require("../modules/checkBody");
 
@@ -25,6 +25,7 @@ router.post("/signup", (req, res) => {
       const hash = bcrypt.hashSync(req.body.password, 10);
 
       const newUser = new User({
+        firstname: req.body.firstName,
         username: req.body.username,
         password: hash,
         token: uid2(32),
