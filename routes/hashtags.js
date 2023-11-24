@@ -22,4 +22,13 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/:hashtag", async (req, res) => {
+    // route qui revoie le le nombre de tweets qui mentionne le hashtag (sans '#') en param
+    const tweets = await Tweet.find();
+    const tweetsCount = tweets.reduce((acc, cur) => 
+      cur.hashtags.includes(`#${req.params.hashtag}`) ? acc+1 : acc, 0
+    );
+    res.json({ tweetsCount });
+});
+
 module.exports = router;
