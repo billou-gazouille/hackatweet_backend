@@ -15,9 +15,6 @@ router.post("/newTweet", async (req, res) => {
   console.log(hashtags);
   console.log("token:", token);
   const user = await User.findOne({ token });
-  if (!user) {
-    return res.status(404).json({ error: "User not found" });
-  }
   await new Tweet({
     //user: mongoose.Schema.Types.ObjectId,
     user: user._id,
