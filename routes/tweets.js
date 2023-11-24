@@ -14,7 +14,7 @@ router.post("/newTweet", async (req, res) => {
   const hashtags = tweetBody.split(" ").filter((word) => word[0] === "#");
   console.log(hashtags);
   console.log("token:", token);
-  user = await User.findOne({ token });
+  const user = await User.findOne({ token });
   await new Tweet({
     //user: mongoose.Schema.Types.ObjectId,
     user: user._id,

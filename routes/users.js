@@ -22,17 +22,17 @@ router.post("/signup", (req, res) => {
   User.findOne({ username: req.body.username }).then((data) => {
     if (data === null) {
       const hash = bcrypt.hashSync(req.body.password, 10);
-
+      const token = uid2(32);
+      
       const newUser = new User({
         firstname: req.body.firstname,
         username: req.body.username,
         password: hash,
-        token: uid2(32),
-        canBookmark: true,
+        token,
       });
 
-      newUser.save().then((newDoc) => {
-        res.json({ result: true, token: newDoc.token });
+      newUser.save().then(() => {
+        res.json({ result: true, token });
       });
     } else {
       // User already exists in database
